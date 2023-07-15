@@ -8,6 +8,7 @@ from selenium import webdriver
 from webdriver_manager.firefox import DriverManager
 from time import time, sleep
 from selenium.webdriver.firefox.service import Service
+import pickle
 
 # Specify the path to geckodriver
 driver_path = '../webdriver/geckodriver'
@@ -17,10 +18,17 @@ driver = webdriver.Firefox(service=service)
 
 
 # input URL - we should have a list to iterate through but the sites may have different layouts from one another
-url = ''
-
+url = "https://www.avisonyoung.co.uk/properties/-/property/results?south_west=1&units=sqft&size_min_sqft=-1&size_min_sqm=-1&size_min_acres=-1&size_max_sqft=0&size_max_sqm=0&size_max_acres=0&address=&submit=Search+Properties&type=r"
+cookies = pickle.load(open("cookies.pkl", "rb"))
+for cookie in cookies:
+    driver.add_cookie(cookie)
 # driver opens the browers on yr pc 
 driver.get(url)
+
+soup = BeautifulSoup(driver.page_source, 'html')
+grid_item = soup.find_all("section", class_='grid-item')
+grid_item[0].find_all('a')
+[x.find('a') for x in grid_item]
 
 # this scrolls to the bottom of the page
 driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
