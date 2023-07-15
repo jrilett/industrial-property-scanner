@@ -61,7 +61,11 @@ for p_url in property_url_list :
     sleep(5)
     print(p_url)
 
-property_info
+pd.DataFrame(property_info, columns = ['url','address', 'cost', 'size_sqft', 'size_sqm','epc']).to_csv("first_db.csv")
+
+
+
+
 
 # this scrolls to the bottom of the page
 driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
