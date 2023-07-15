@@ -1,4 +1,5 @@
 import requests
+import os
 from bs4 import BeautifulSoup 
 import csv
 import pandas as pd
@@ -8,7 +9,11 @@ from webdriver_manager.firefox import DriverManager
 from time import time, sleep
 
 # need to check if i am running or if james is as he is using edge
-driver = webdriver.Firefox(executable_path='./geckodriver')
+
+if os.path.exists("../webdriver/geckodriver"):
+    driver = webdriver.Firefox(executable_path='./geckodriver')
+else:
+    driver = webdriver.Edge(executable_path='../webdriver/msedgedriver.exe')
 
 # input URL - we should have a list to iterate through but the sites may have different layouts from one another
 url = ''
