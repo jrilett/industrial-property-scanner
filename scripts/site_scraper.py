@@ -7,13 +7,14 @@ import numpy as np
 from selenium import webdriver
 from webdriver_manager.firefox import DriverManager
 from time import time, sleep
+from selenium.webdriver.firefox.service import Service
 
-# need to check if i am running or if james is as he is using edge
+# Specify the path to geckodriver
+driver_path = '../webdriver/geckodriver'
 
-if os.path.exists("../webdriver/geckodriver"):
-    driver = webdriver.Firefox(executable_path='./geckodriver')
-else:
-    driver = webdriver.Edge(executable_path='../webdriver/msedgedriver.exe')
+service = Service(driver_path)
+driver = webdriver.Firefox(service=service)
+
 
 # input URL - we should have a list to iterate through but the sites may have different layouts from one another
 url = ''
