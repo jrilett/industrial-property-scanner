@@ -8,4 +8,5 @@
 ## Contributors
 
 [@jrilett](https://github.com/jrilett)
+
 [@leoloman](https://github.com/leoloman)
