@@ -18,7 +18,7 @@ driver = webdriver.Firefox(service=service)
 
 
 # input URL - we should have a list to iterate through but the sites may have different layouts from one another
-url = "https://www.avisonyoung.co.uk/properties/-/property/results?south_west=1&units=sqft&size_min_sqft=-1&size_min_sqm=-1&size_min_acres=-1&size_max_sqft=0&size_max_sqm=0&size_max_acres=0&address=&submit=Search+Properties&type=r"
+url = "https://www.avisonyoung.co.uk/properties/-/property/results?industrial=1&south_west=1&units=sqft&size_min_sqft=-1&size_min_sqm=-1&size_min_acres=-1&size_max_sqft=0&size_max_sqm=0&size_max_acres=0&submit=SEARCH&type=r"
 cookies = pickle.load(open("scripts/cookies.pkl", "rb"))
 driver.get(url)
 for cookie in cookies:
@@ -29,11 +29,14 @@ for cookie in cookies:
 soup = BeautifulSoup(driver.page_source, 'html')
 grid_item = soup.find_all("section", class_='grid-item')
 
-property_url_list = [x.find('a')["href"] for x in grid_item]
+property_url_list = [x.find('a')["href"] for x in grid_item] 
 property_info = []
+
 for p_url in property_url_list : 
-    driver.get(p_url)
+
+    driver.get(property_url_list)
     property_soup = BeautifulSoup(driver.page_source, 'html')
+    property_type = 1 if 'industrial' in url.lower() else 0
     
     try:
         property_cost = property_soup.find_all("div", class_ = "right")[1].find("pre").text
@@ -52,16 +55,15 @@ for p_url in property_url_list :
     except:
         property_address = ''
     try:
-        property_epc = property_soup.find("div", class_ = "epc").text
+        agent_number = property_soup.find("section", class_ = "agent-details").text
     except:
-        property_epc = ''
+        agent_number = ''
 
-
-    property_info.append([p_url, property_address, property_cost, property_size_sqft, property_size_sqm, property_epc])
+    property_info.append([p_url, property_address, property_cost, property_size_sqft, property_size_sqm])
     sleep(5)
     print(p_url)
 
-pd.DataFrame(property_info, columns = ['url','address', 'cost', 'size_sqft', 'size_sqm','epc']).to_csv("first_db.csv")
+pd.DataFrame(property_info, columns = ['url','address', 'cost', 'size_sqft', 'size_sqm','agent_number']).to_csv("first_db.csv")
 
 
 
