@@ -7,3 +7,9 @@ https://www.avisonyoung.co.uk/web/bristol
 https://www.savills.co.uk/find-commercial-property/
 
 https://www.colliers.com/en-gb/united-kingdom/cities/bristol
+
+# industrial / warehouse
+https://www.avisonyoung.co.uk/properties/-/property/results?industrial=1&south_west=1&units=sqft&size_min_sqft=-1&size_min_sqm=-1&size_min_acres=-1&size_max_sqft=0&size_max_sqm=0&size_max_acres=0&submit=SEARCH&type=r
+
+# everything else
+https://www.avisonyoung.co.uk/properties/-/property/results?office=1&flex-office=1&retail=1&south_west=1&units=sqft&size_min_sqft=-1&size_min_sqm=-1&size_min_acres=-1&size_max_sqft=0&size_max_sqm=0&size_max_acres=0&submit=SEARCH&type=r
