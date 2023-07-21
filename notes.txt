@@ -16,5 +16,12 @@ https://docs.conda.io/en/latest/miniconda.html#linux-installers
     - Industrial
     - Commercial 
 
-- Update to include phone number of agent
-- Drop EPC
+James:
+- [AvisionSiteScraper.py] Investigate cycling through all page numbers to scrape all property listings
+
+Leo:
+- 
+
+General Next stups:
+- PropertyDataFileStore class - save, read, update data files
+- [AvisionSiteScraper.py] Sort out regex for industrial v commercial
