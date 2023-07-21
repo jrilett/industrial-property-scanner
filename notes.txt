@@ -9,8 +9,12 @@ Edge: https://learn.microsoft.com/en-us/microsoft-edge/webdriver-chromium/?tabs=
 download the relevant bash script and run
 https://docs.conda.io/en/latest/miniconda.html#linux-installers
 
-```
-conda create -n idp python11 --file=src/python/requirements.txt
-```
+## OKRs
 
-meep
+- Property type split (industrial / commerical)
+
+    - Industrial
+    - Commercial 
+
+- Update to include phone number of agent
+- Drop EPC
